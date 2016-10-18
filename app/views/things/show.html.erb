@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @thing.title %>
+</p>
+
+<p>
+  <strong>Opisik:</strong>
+  <%= @thing.opisik %>
+</p>
+
+<p>
+  <strong>Opis:</strong>
+  <%= @thing.opis %>
+</p>
+
+<p>
+  <strong>Mete:</strong>
+  <%= @thing.mete %>
+</p>
+
+<p>
+  <strong>Recenzja:</strong>
+  <%= @thing.recenzja %>
+</p>
+
+<p>
+  <strong>Rodzaj:</strong>
+  <%= @thing.rodzaj %>
+</p>
+
+<%= link_to 'Edit', edit_thing_path(@thing) %> |
+<%= link_to 'Back', things_path %>
