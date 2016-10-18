@@ -49,3 +49,8 @@ end
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'simple_form'
 gem 'devise'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'jquery-mobile-rails-assets'
+gem 'devise-bootstrap-views'
+gem 'friendly_id', '~> 5.1.0'
+gem 'cancancan', '~> 1.10'
