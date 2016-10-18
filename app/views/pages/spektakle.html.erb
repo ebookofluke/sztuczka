@@ -1,14 +1,12 @@
-<%- model_class = Thing -%>
+<% if can? :update, @things %>
+<%= link_to 'nowy',
+    new_thing_path,
+    :class => 'btn  margin-top  btn-lg btn-primary ' %>
+<% end %>
 
-        <% if can? :update, @things %>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_thing_path,
-            :class => 'btn  btn-xl btn-primary ' %>
-        <% end %>
 <table class="table">
   <thead>
     <tr>
-
       <th></th>
       <th></th>
       <th></th>
@@ -23,21 +21,21 @@
 
         <td class="foto">
         <%= link_to image_tag(thing.foto.url(:kolo), class: ''), thing_path(thing)%></td>
-        <td><%= thing.title %></td>
-        <td><%= thing.opisik.first(280) %></td>
+        <td><p><%= thing.title %></p></td>
+        <td><p><%= thing.opisik %></p></td>
 
-        <td><%= thing.meta.first(280) %></td>
+        <td><%= simple_format(thing.meta.first(200)) %></td>
 
-        <td><%= thing.rodzaj %></td>
+
 
 
 
         <% if can? :update, @things %>
         <td>
-          <%= link_to 'Show', thing_path(thing), :class => 'btn btn-default btn-lg  ' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to 'zobacz', thing_path(thing), :class => 'btn btn-default btn-lg  ' %>
+          <%= link_to 'edytuj',
                       edit_thing_path(thing), :class => 'btn btn-default btn-warning btn-lg  ' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%= link_to 'kasowanko',
                       thing_path(thing),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },

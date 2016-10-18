@@ -1,0 +1,47 @@
+<% if can? :update, @things %>
+<%= link_to 'nowy',
+    new_thing_path,
+    :class => 'btn  margin-top  btn-lg btn-primary ' %>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody >
+    <% @things.each do |thing| %>
+      <tr class="jeden-opis">
+
+        <td class="foto">
+        <%= link_to image_tag(thing.foto.url(:kolo), class: ''), thing_path(thing)%></td>
+        <td><p><%= thing.title %></p></td>
+        <td><p><%= thing.opisik.first(280) %></p></td>
+
+      <td><%= simple_format(thing.meta.first(200)) %></td>
+
+
+
+
+
+      <% if can? :update, @things %>
+      <td>
+        <%= link_to 'zobacz', thing_path(thing), :class => 'btn btn-default btn-lg  ' %>
+        <%= link_to 'edytuj',
+                    edit_thing_path(thing), :class => 'btn btn-default btn-warning btn-lg  ' %>
+        <%= link_to 'kasowanko',
+                    thing_path(thing),
+                    :method => :delete,
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-lg btn-danger  ' %>
+      </td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

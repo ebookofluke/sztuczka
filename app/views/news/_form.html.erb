@@ -1,55 +1,13 @@
-<%= form_for @news, :html => { :class => "form-horizontal news" } do |f| %>
+<%= simple_form_for @news, :html => { :class => 'form-horizontal' } do |f| %>
 
-  <% if @news.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @news.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+  <%= f.input :foto_news, as: :file %>
+  <%= f.input :co %>
+  <%= f.input :kiedy %>
+  <%= f.input :czego %>
+  <%= f.input :link %>
 
-  <div class="form-group">
-    <%= f.label :co, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :co, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:co) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :kiedy, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :kiedy, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:kiedy) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :czego, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :czego, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:czego) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :link, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :link, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:link) %>
-  </div>
 
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 news_index_path, :class => 'btn btn-default' %>
-    </div>
-  </div>
-
 <% end %>

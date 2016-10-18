@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018184401) do
+ActiveRecord::Schema.define(version: 20161018194134) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20161018184401) do
     t.string   "title"
     t.text     "opisik"
     t.text     "opis"
-    t.text     "mete"
     t.text     "recenzja"
     t.string   "rodzaj"
     t.datetime "created_at",         null: false
@@ -60,7 +59,11 @@ ActiveRecord::Schema.define(version: 20161018184401) do
     t.string   "foto3_content_type"
     t.integer  "foto3_file_size"
     t.datetime "foto3_updated_at"
+    t.text     "meta"
+    t.string   "slug"
   end
+
+  add_index "things", ["slug"], name: "index_things_on_slug", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

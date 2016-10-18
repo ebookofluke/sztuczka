@@ -1,5 +1,14 @@
 class ThingsController < ApplicationController
   before_action :set_thing, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :menu#Application
+
+  load_and_authorize_resource
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
+
 
   # GET /things
   # GET /things.json
@@ -28,7 +37,7 @@ class ThingsController < ApplicationController
 
     respond_to do |format|
       if @thing.save
-        format.html { redirect_to @thing, notice: 'Thing was successfully created.' }
+        format.html { redirect_to @thing, notice: 'Ulala – nowe nowości – jupi!' }
         format.json { render :show, status: :created, location: @thing }
       else
         format.html { render :new }
@@ -42,7 +51,7 @@ class ThingsController < ApplicationController
   def update
     respond_to do |format|
       if @thing.update(thing_params)
-        format.html { redirect_to @thing, notice: 'Thing was successfully updated.' }
+        format.html { redirect_to @thing, notice: 'Hurra – uaktualnione!' }
         format.json { render :show, status: :ok, location: @thing }
       else
         format.html { render :edit }
@@ -56,7 +65,7 @@ class ThingsController < ApplicationController
   def destroy
     @thing.destroy
     respond_to do |format|
-      format.html { redirect_to things_url, notice: 'Thing was successfully destroyed.' }
+      format.html { redirect_to things_url, notice: '..tak szybko odchodzą..' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +73,11 @@ class ThingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_thing
-      @thing = Thing.find(params[:id])
+      @thing = Thing.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thing_params
-      params.require(:thing).permit(:title, :opisik, :opis, :mete, :recenzja, :rodzaj)
+      params.require(:thing).permit(:title, :opisik, :opis, :meta, :recenzja, :rodzaj, :foto, :foto2, :foto3)
     end
 end

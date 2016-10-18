@@ -1,0 +1,47 @@
+<div id=m>
+<div class="menu-in" >        	<div> menu</div>
+</div>
+</div> <!-- koniec m -->
+
+
+<div class="menu-out animsition">
+
+  <ul class="list-group lista1">
+
+    <br><br>
+    <hr>
+    <li><%= link_to 'Aktualności', root_path, class: ' animsition-link'%></li>
+    <li><%= link_to 'O nas / Kontakt', onas_path, class: ' animsition-link'%></li>
+    <li><%= link_to 'Facebook', 'https://www.facebook.com/Sztuczka-803765686326111/?ref=aymt_homepage_panel', class: ' animsition-link'%></li>
+
+  </ul>
+  <hr>
+
+
+<ul class="list-group lista1">
+
+      <li class="list-group-item"><h4>Spektakle:</h4></li>
+      <% $spektakle.each do |thing| %>
+      <li><%= link_to thing.title, thing_path(thing), class: ' animsition-link'%></li>
+            <% end %>
+
+</ul>
+  <hr>
+<ul class="list-group lista1">
+  <li class="list-group-item"><h4>Warsztaty:</h4></li>
+  <% $warsztaty.each do |thing| %>
+  <li><%= link_to thing.title, thing_path(thing), class: ' animsition-link'%></li>
+        <% end %>
+
+</ul>
+  <hr>
+<ul class="list-group lista1">
+  <li class="list-group-item"><h4>Specjalne:</h4></li>
+  <% $specjalne.each do |thing| %>
+  <li><%= link_to thing.title, thing_path(thing), class: ' animsition-link'%></li>
+        <% end %>
+</ul>
+  <hr>
+
+
+</div> <!-- koniec menu-out -->

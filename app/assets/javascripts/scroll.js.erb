@@ -1,0 +1,31 @@
+var iScrollPos = 0;
+
+	$(window).scroll(function () {
+
+
+		//this code check scroll
+
+	    var iCurScrollPos = $(this).scrollTop();
+			//if go down > hide nav
+	    if (iCurScrollPos > iScrollPos) {
+	        $(".menu-in").hide();
+			//if go up > show nav
+	    } else {
+	      $(".menu-in").show();
+	    }
+	    iScrollPos = iCurScrollPos;
+
+
+		//this code check if we are on bottom > show naw
+
+			var scrollHeight = $(document).height();
+			var scrollPosition = $(window).height() + $(window).scrollTop();
+			if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+			    $(".menu-in").show();
+			}
+
+
+
+
+
+	});

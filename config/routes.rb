@@ -1,7 +1,24 @@
 Rails.application.routes.draw do
+
+
   devise_for :users
   resources :things
   resources :news
+  root 'news#index'
+
+  get 'login' => 'news#new'
+  get 'new' => 'news#index'
+  get 'onas' => 'pages#about'
+  get 'kontakt' => 'pages#contact'
+  get 'spektakle' => 'pages#spektakle'
+  get 'warsztaty' => 'pages#warsztaty'
+  get 'specjalne' => 'pages#specjalne'
+  get 'osoby' => 'pages#osoby'
+  get 'kontakt' => 'pages#contact'
+
+
+
+  get 'things' => 'things#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,38 @@
+// var main = function() {
+//         $(".menu-out").hide();
+//         $(".menu-in").click(function () {
+//
+//           $(".menu-in").fadeToggle(800);
+//           $(".menu-out").delay(600).fadeToggle(800);
+//           $(".container").fadeToggle();
+//         });
+//
+//         $(".list-group-item").click(function () {
+//           $(".menu-out").fadeToggle(800);
+//
+//         });
+//
+// }
+// $(document).ready(main);
+
+var main = function() {
+
+
+
+        $(".menu-in").click(function () {
+
+          $("#canvas").toggleClass('czarny');
+          // $(".menu-in").fadeToggle(800);
+          $(".menu-out").delay(600).fadeToggle(800);
+          $(".container").fadeToggle();
+          $(".menu-in").css("z-index","-200");
+        });
+
+        $(".list-group-item").click(function () {
+          // $(".menu-out").fadeToggle(800);
+          $("#canvas").removeClass('czarny').addClass('bialy');
+
+        });
+
+}
+$(document).ready(main);

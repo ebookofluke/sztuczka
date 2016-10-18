@@ -1,10 +1,19 @@
 class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [ :new, :edit, :update, :destroy]
+  before_action :menu#Application
+
+
+
+  load_and_authorize_resource
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 
   # GET /news
   # GET /news.json
   def index
-    @news = News.all
+    @news = News.all.order(updated_at: :desc)
   end
 
   # GET /news/1
@@ -28,7 +37,7 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
+        format.html { redirect_to news_index_url, notice: 'Hurra – jest nowy nius!' }
         format.json { render :show, status: :created, location: @news }
       else
         format.html { render :new }
@@ -42,7 +51,7 @@ class NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to @news, notice: 'News was successfully updated.' }
+        format.html { redirect_to news_index_url, notice: 'Hurra – uaktualniony!' }
         format.json { render :show, status: :ok, location: @news }
       else
         format.html { render :edit }
@@ -56,7 +65,7 @@ class NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      format.html { redirect_to news_index_url, notice: 'News was successfully destroyed.' }
+      format.html { redirect_to news_index_url, notice: 'Był nius – nie ma niusa!' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +78,6 @@ class NewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_params
-      params.require(:news).permit(:co, :kiedy, :czego, :link)
+      params.require(:news).permit(:co, :czego, :link, :kiedy, :czas1, :czas2, :czas3, :foto_news)
     end
 end

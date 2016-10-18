@@ -1,0 +1,14 @@
+var main = function() {
+
+
+        $(".znik1").hide();
+          $(".znik1").before("<div class='poka panel-body  opa'><p> czytaj więcej ...  </p></div>");
+          $(".poka").click(function () {
+
+
+            $(".znik1").fadeToggle();
+            $(".poka").fadeToggle();
+          });
+
+}
+$(document).ready(main);
