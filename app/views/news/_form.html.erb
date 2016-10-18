@@ -1,33 +1,55 @@
-<%= form_for(@news) do |f| %>
-  <% if @news.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>
+<%= form_for @news, :html => { :class => "form-horizontal news" } do |f| %>
 
-      <ul>
-      <% @news.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @news.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @news.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :co %><br>
-    <%= f.text_field :co %>
+  <div class="form-group">
+    <%= f.label :co, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :co, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:co) %>
   </div>
-  <div class="field">
-    <%= f.label :kiedy %><br>
-    <%= f.text_field :kiedy %>
+  <div class="form-group">
+    <%= f.label :kiedy, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :kiedy, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:kiedy) %>
   </div>
-  <div class="field">
-    <%= f.label :czego %><br>
-    <%= f.text_field :czego %>
+  <div class="form-group">
+    <%= f.label :czego, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :czego, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:czego) %>
   </div>
-  <div class="field">
-    <%= f.label :link %><br>
-    <%= f.text_field :link %>
+  <div class="form-group">
+    <%= f.label :link, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :link, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:link) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                news_index_path, :class => 'btn btn-default' %>
+    </div>
   </div>
+
 <% end %>

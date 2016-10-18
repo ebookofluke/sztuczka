@@ -1,24 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = News -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Co:</strong>
-  <%= @news.co %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:co) %>:</strong></dt>
+  <dd><%= @news.co %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:kiedy) %>:</strong></dt>
+  <dd><%= @news.kiedy %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:czego) %>:</strong></dt>
+  <dd><%= @news.czego %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:link) %>:</strong></dt>
+  <dd><%= @news.link %></dd>
+</dl>
 
-<p>
-  <strong>Kiedy:</strong>
-  <%= @news.kiedy %>
-</p>
-
-<p>
-  <strong>Czego:</strong>
-  <%= @news.czego %>
-</p>
-
-<p>
-  <strong>Link:</strong>
-  <%= @news.link %>
-</p>
-
-<%= link_to 'Edit', edit_news_path(@news) %> |
-<%= link_to 'Back', news_index_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              news_index_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_news_path(@news), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              news_path(@news),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
